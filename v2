@@ -17,7 +17,7 @@ class Program
         public string Appearance;
 
         public string Description =>
-            $"{Name}, {Age} yaşında bir {Gender.ToLower()} ve mesleği {Profession.ToLower()}, hobisi ise {Hobby.ToLower()}.\nDuygusal Durumu: {EmotionalState}, Dış Görünüş: {Appearance}.";
+            $"{Name}, {Age} yasinda bir {Gender.ToLower()} ve meslegi {Profession.ToLower()}, hobisi ise {Hobby.ToLower()}.\nDuygusal Durumu: {EmotionalState}, Dis Gorunus: {Appearance}.";
 
         public override string ToString()
         {
@@ -27,22 +27,22 @@ class Program
 
     static Random rnd = new Random();
     static string[] NamesMale = { "Ali", "Mehmet", "Ahmet", "Cem", "Burak" };
-    static string[] NamesFemale = { "Ayşe", "Zeynep", "Elif", "Seda", "Derya" };
-    static string[] Genders = { "Kadın", "Erkek" };
-    static string[] Professions = { "Öğrenci", "Bahçıvan", "Şoför", "Şarkıcı", "Ev Sahibi", "Gazeteci", "Garson", "Barmen", "Aşçı" };
-    static string[] Hobbies = { "Okçu", "Atlet", "Ateşli Silah Ustası", "Satranç", "Bulmaca Çözmek", "Yüzmek" };
+    static string[] NamesFemale = { "Ayse", "Zeynep", "Elif", "Seda", "Derya" };
+    static string[] Genders = { "Kadin", "Erkek" };
+    static string[] Professions = { "Ogrenci", "Bahcivan", "Sofor", "Sarkici", "Ev Sahibi", "Gazeteci", "Garson", "Barmen", "Asci" };
+    static string[] Hobbies = { "Okcu", "Atlet", "Atesli Silah Ustasi", "Satranc", "Bulmaca Cozmek", "Yuzmek" };
     static string[] EmotionalStates = { "Korkuyor", "Sinirli", "Sakin", "Mutlu", "Uykulu" };
-    static string[] Appearances = { "Ellerinde kir var", "Kıyafeti yırtık", "Kıyafetleri düzgün", "Pijama giymiş" };
+    static string[] Appearances = { "Ellerinde kir var", "Kiyafeti yirtik", "Kiyafetleri duzgun", "Pijama giymis" };
 
     static void Main()
     {
-        Console.WriteLine("🔎 Katili Bulma Oyunu Başladı!");
+        Console.WriteLine("🔎 Katili Bulma Oyunu Basladi!");
 
         var characters = GenerateCharacters(7);
         var killer = characters[rnd.Next(characters.Count)];
         killer.IsKiller = true;
 
-        Console.WriteLine("\nŞüpheliler Tanıtılıyor:\n");
+        Console.WriteLine("\nSupheliler Tanitiliyor:\n");
 
         foreach (var character in characters)
         {
@@ -52,49 +52,49 @@ class Program
         int attempts = 3;
         while (attempts > 0)
         {
-            Console.WriteLine($"\nTahmin et: Katil kim? ({attempts} hakkın kaldı)");
+            Console.WriteLine($"\nTahmin et: Katil kim? ({attempts} hakkin kaldı)");
             Console.WriteLine("Hayatta olan karakterler:");
             foreach (var c in characters.Where(c => c.IsAlive))
             {
                 Console.WriteLine($"- {c.Name}");
             }
 
-            Console.Write("\nTahmin ettiğin ismi yaz: ");
+            Console.Write("\nTahmin ettigin ismi yaz: ");
             string guess = Console.ReadLine().Trim();
 
             var guessedCharacter = characters.FirstOrDefault(c => c.Name.Equals(guess, StringComparison.OrdinalIgnoreCase) && c.IsAlive);
 
             if (guessedCharacter == null)
             {
-                Console.WriteLine("Geçersiz veya ölü bir karakter ismi girdiniz.");
+                Console.WriteLine("Gecersiz veya olu bir karakter ismi girdiniz.");
                 continue;
             }
 
             if (guessedCharacter.IsKiller)
             {
-                Console.WriteLine($"\n🎉 Tebrikler! {guessedCharacter.Name} katildi. Oyunu kazandın!");
+                Console.WriteLine($"\n🎉 Tebrikler! {guessedCharacter.Name} katildi. Oyunu kazandin!");
                 return;
             }
             else
             {
-                Console.WriteLine($"\n❌ Hayır, {guessedCharacter.Name} masumdu.");
+                Console.WriteLine($"\n❌ Hayir, {guessedCharacter.Name} masumdu.");
                 guessedCharacter.IsAlive = false;
                 attempts--;
 
-                // Eğer 1 kişi kalırsa (katil), oyun biter
+                // Eger 1 kisi kalirsa (katil), oyun biter
                 int aliveCount = characters.Count(c => c.IsAlive);
                 if (aliveCount == 1)
                 {
                     var lastAlive = characters.First(c => c.IsAlive);
-                    Console.WriteLine($"\n☠️ Artık sadece katil olan {lastAlive.Name} hayatta kaldı...");
-                    Console.WriteLine("💀 Katil kazandı. Oyunu kaybettin!");
+                    Console.WriteLine($"\n☠️ Artik sadece katil olan {lastAlive.Name} hayatta kaldi...");
+                    Console.WriteLine("💀 Katil kazandi. Oyunu kaybettin!");
                     return;
                 }
             }
         }
 
-        Console.WriteLine($"\n😢 3 tahmin hakkını da kullandın. Katil {killer.Name} idi!");
-        Console.WriteLine("💀 Katil kazandı.");
+        Console.WriteLine($"\n😢 3 tahmin hakkini da kullandin. Katil {killer.Name} idi!");
+        Console.WriteLine("💀 Katil kazandi.");
     }
 
     static List<Character> GenerateCharacters(int count)
@@ -125,17 +125,17 @@ class Program
             };
 
             // Katil Durumu
-            if (c.EmotionalState == "Sinirli" && c.Appearance == "Kıyafeti yırtık")
+            if (c.EmotionalState == "Sinirli" && c.Appearance == "Kiyafeti yirtik")
             {
-                c.IsKiller = true; // Sinirli ve kıyafeti yırtık olan %100 katil
+                c.IsKiller = true; // Sinirli ve kiyafeti yirtik olan %100 katil
             }
-            else if ((c.EmotionalState == "Sinirli" && c.Appearance == "Ellerinde kir var") || (c.EmotionalState == "Sakin" && c.Appearance == "Kıyafeti yırtık"))
+            else if ((c.EmotionalState == "Sinirli" && c.Appearance == "Ellerinde kir var") || (c.EmotionalState == "Sakin" && c.Appearance == "Kiyafeti yirtik"))
             {
-                c.IsKiller = rnd.NextDouble() <= 0.5; // Sinirli, elleri kirli veya sakin, kıyafeti yırtık olan %50 katil olma şansı
+                c.IsKiller = rnd.NextDouble() <= 0.5; // Sinirli, elleri kirli veya sakin, kiyafeti yirtik olan %50 katil olma sansi
             }
-            else if (c.Hobby == "Okçu" || c.Hobby == "Ateşli Silah Ustası")
+            else if (c.Hobby == "Okcu" || c.Hobby == "Atesli Silah Ustasi")
             {
-                c.IsKiller = rnd.NextDouble() <= 0.7; // Bu hobileri olanların katil olma olasılığı %70
+                c.IsKiller = rnd.NextDouble() <= 0.7; // Bu hobileri olanlarin katil olma olasili %70
             }
 
             characters.Add(c);
