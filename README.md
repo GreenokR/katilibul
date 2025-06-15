@@ -20,3 +20,6 @@ Karakter Sayısı:
 Karakter sayısını 5'ten 7'ye çıkardık, böylece oyun daha zor hale geldi.
 
 Artık her karakterin duygusal durumu ve dış görünüşü hakkında bilgiler verilecek ve katil olma ihtimalleri buna göre hesaplanacak.
+
+_________________________
+V3'de Vasiyet eklendi. Katili bulmak daha kolay hale geldi.
